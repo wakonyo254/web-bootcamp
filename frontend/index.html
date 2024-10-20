@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>USER MANAGEMENT</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <div>
+            <h1>User Management</h1>
+            <div>
+                <h3>Register</h3>
+                <form id="registerForm">
+                    <label for="regName">Name: </label>
+                    <input id="regName" type="text" required>
+                    <label for="regEmail">Email: </label>
+                    <input id="regEmail" type="email" required>
+                    <label for="regPassword">Password: </label>
+                    <input id="regPassword" type="password" required>
+                    <button type="submit">Register</button>
+                </form>
+            </div>
+            <div>
+                <h3>Login</h3>
+                <form id="loginForm">
+                    <label for="loginEmail">Email: </label>
+                    <input id="loginEmail" type="email" required>
+                    <label for="loginPassword">Password: </label>
+                    <input id="loginPassword" type="password" required>
+                    <button type="submit">Login</button>
+                </form>
+            </div>
+            <div id="userSection" style="display: none;">
+                <h3>User Information</h3>
+                <p><strong>Name: </strong><span id="userName"></span></p>
+                <p><strong>Email: </strong><span id="userEmail"></span></p>
+                <h3>Edit User Information</h3>
+                <form id="editForm">
+                    <label for="editName">Name: </label>
+                    <input id="editName" type="text" required>
+                    <label for="editEmail">Email: </label>
+                    <input id="editEmail" type="email" required>
+                    <label for="editPassword">Password: </label>
+                    <input id="editPassword" type="password" required>
+                    <button type="submit">Update</button>
+                    <button type="reset">Cancel</button>
+                </form>
+                <button id="logoutbutton">Logout</button>
+            </div>
+            <div id="message" style="display: none;"></div>
+        </div>
+        <script src="js/script.js"></script>
+    </body>
+</html>
