@@ -6,7 +6,7 @@ const logoutButton = document.getElementById('logoutButton');
 
 function showMessage(type, text){
     messageDiv.style.display = 'block';
-    if(type === success){
+    if(type == 'success'){
       messageDiv.style.color = 'green';
     } else {
       messageDiv.style.color = 'red';

@@ -4,7 +4,7 @@ const { validationResult } = require('express-validator');  // validate on the b
 //validation will be on the route
 // register user function
 exports.registerUser = async (req, res) => {
-  const errors = validateResult(req);
+  const errors = validationResult(req);
 //check if errors in validation
 if(!errors.isEmpty()){
     return res.status(400).json({ message: 'Please correct input errors', errors: errors.array() });
@@ -13,7 +13,7 @@ if(!errors.isEmpty()){
 const { name, email, password } = req.body;
 try{
     //check if user exists with the email  ***select email from users where email =?
-    const [user] = await db.execute('SELECT * FROM users WHERE email = ?', [email]);
+    const [user] = await db.execute('SELECT email FROM users WHERE email = ?', [email]);
     if(user.length > 0){
         return res.status(400).json({ message: 'User already exists!' });
     }
@@ -35,7 +35,7 @@ exports.loginUser = async (req, res) => {
    const [ email, password ] = req.body;
    try{
     //check if user exists
-    const [user] = await db.execute('SELECT name, email FROM users WHERE  email = ?', [email]);  ///name and email 
+    const [user] = await db.execute('SELECT name FROM users WHERE  email = ?', [email]);  ///name and email 
     if(user.length === 0){
         return res.status(400).json({ message: 'User does not exists! Please register' });
     }
@@ -93,7 +93,7 @@ exports.editUser = async (req, res) => {
     if(!req.session.userId){
         return res.status(401).json({ message: 'Unauthorized. Please login to continue.'});
      }
-    const errors = validateResult(req);
+     const errors = validationResult(req);
     //check if errors in validation
     if(!errors.isEmpty()){
         return res.status(400).json({ message: 'Please correct input errors', errors: errors.array() });

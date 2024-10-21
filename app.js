@@ -34,7 +34,7 @@ app.use(session({
 //config routes  //paths within web serve/web application
 app.use('/telemedicine/api/users', require('./routes/userRoutes'));
 
-app.use('*', (req, res) => {
+app.get('*', (req, res) => {
    res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
 })
 
