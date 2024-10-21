@@ -4,9 +4,9 @@ const userNameSpan = document.getElementById('userName');
 const userEmailSpan = document.getElementById('userEmail');
 const logoutButton = document.getElementById('logoutButton');
 
-function showMessage(type, text){
+function showMessage(type, text,){
     messageDiv.style.display = 'block';
-    if(type == 'success'){
+    if(type === 'success'){
       messageDiv.style.color = 'green';
     } else {
       messageDiv.style.color = 'red';
@@ -39,7 +39,7 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
     //capture results
     const result = await response.json();
 
-    if(response.satus === 201){
+    if(response.status === 201){
         showMessage('success', result.message)
     } else {
         showMessage('failed', result.message);
@@ -65,7 +65,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
     //capture results
     const result = await response.json();
 
-    if(response.satus === 200){
+    if(response.status === 200){
         showMessage('success', result.message)
         getUser();
     } else {
@@ -93,9 +93,9 @@ async function getUser(){
  document.getElementById('editForm').addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const name = docement.getElementById('editName').value;
-    const email = docement.getElementById('editEmail').value;
-    const password = docement.getElementById('editPassword').value;
+    const name = document.getElementById('editName').value;
+    const email = document.getElementById('editEmail').value;
+    const password = document.getElementById('editPassword').value;
 
     //transmit data
     const response = await fetch('/telemedicine/api/users/individual/edit', {
@@ -109,7 +109,7 @@ async function getUser(){
     //capture results
     const result = await response.json();
 
-    if(response.satus === 200){
+    if(response.status === 200){
         showMessage('success', result.message)
         getUser();
     } else {

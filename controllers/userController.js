@@ -32,15 +32,16 @@ try{
 //login
 exports.loginUser = async (req, res) => {
     //fetch the email & passsword from req.body
-   const [ email, password ] = req.body;
+   const { email, password } = req.body;
    try{
     //check if user exists
-    const [user] = await db.execute('SELECT name FROM users WHERE  email = ?', [email]);  ///name and email 
+    const [user] = await db.execute('SELECT * FROM users WHERE  email = ?', [email]);  
     if(user.length === 0){
         return res.status(400).json({ message: 'User does not exists! Please register' });
     }
     //check password if user exists[compare with the passord stored]
     const isMatch = await bcrypt.compare(password, user[0].password);
+    
     if(!isMatch){
         return res.status(400).json({message: 'Invalid email/password combination'});
     }
